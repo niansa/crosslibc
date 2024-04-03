@@ -11,6 +11,8 @@ struct memchunk_free {
 
 
 
+#ifndef LIBC_NO_HEAP
+#ifndef CLIBC_NO_LL_HEAP
 static struct memchunk_free heap;
 
 void *mem_base;
@@ -92,6 +94,7 @@ size_t get_mem_total() {
 size_t get_mem_free() {
     return get_mem_total() - get_mem_used();
 }
+#endif
 
 
 void *malloc(size_t size) {
@@ -107,12 +110,15 @@ void *malloc(size_t size) {
     return mem + 1;
 }
 void free(void *ptr) {
+#ifndef CLIBC_NO_LL_HEAP
     if (ptr < mem_base || (char*)ptr > (char*)mem_base + mem_size)
         return;
+#endif
 
     size_t *mem = (size_t *)ptr - 1;
     heap_dealloc(mem, mem[0]);
 }
+#endif
 
 void *calloc(size_t nmemb, size_t size) {
     size *= nmemb;
