@@ -27,23 +27,29 @@ int strcmp(const char *s1, const char *s2) {
     return diff;
 }
 
+#ifndef CLIBC_NO_MEMCPY
 void *memcpy(void *dest, const void *src, size_t n) {
     for (size_t it = 0; it != n; it++)
         ((char*)dest)[it] = ((char*)src)[it];
     return dest;
 }
+#endif
 
+#ifndef CLIBC_NO_MEMSET
 void *memset(void *s, int c, size_t n) {
     for (size_t it = 0; it != n; it++)
         ((char*)s)[it] = (char)c;
     return s;
 }
+#endif
 
+#ifndef CLIBC_NO_MEMMOVE
 void *memmove(void *dest, const void *src, size_t n) {
     for (size_t it = n; it != 0; it--)
         ((char*)dest)[it-1] = ((char*)src)[it-1];
     return dest;
 }
+#endif
 
 int memcmp(const void *s1, const void *s2, size_t n) {
     if (n == 0)
