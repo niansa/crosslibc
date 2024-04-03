@@ -63,12 +63,12 @@ int memcmp(const void *s1, const void *s2, size_t n) {
     return(*((unsigned char*)s1) - *((unsigned char*)s2));
 }
 
-void *memchr(const void *s, unsigned char c, size_t n) {
+void *memchr(const void *s, int c, size_t n) {
     if (n != 0) {
         const unsigned char *p = s;
 
         do {
-            if (*p++ == c)
+            if (*p++ == (unsigned char)c)
                 return ((void *)(p - 1));
         } while (--n != 0);
     }
