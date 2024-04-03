@@ -1,0 +1,13 @@
+#pragma once
+
+void *operator new(size_t size);
+void *operator new[](size_t size);
+void *operator new[](size_t size, const char *, int, unsigned, const char *, int line);
+void *operator new[](size_t size, size_t, size_t, char const *, int, unsigned int, char const*, int);
+
+void operator delete(void *ptr, unsigned long);
+void operator delete[](void *ptr, unsigned long);
+void operator delete[](void *ptr);
+
+void *operator new(std::size_t n, void *ptr);
+void operator delete(void *ptr);

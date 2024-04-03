@@ -1,0 +1,4 @@
+namespace std {
+using nullptr_t = decltype(nullptr);
+}
+using nullptr_t = decltype(nullptr);
