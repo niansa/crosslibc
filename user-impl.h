@@ -2,6 +2,10 @@
 
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void _putchar(char);
 char _getchar();
 void _puts(const char*);
@@ -19,4 +23,8 @@ size_t get_mem_free();
 #else
 void *malloc(size_t size);
 void free(void *ptr);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
