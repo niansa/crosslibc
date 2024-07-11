@@ -1,5 +1,6 @@
 #pragma once
 
+#ifndef CLIBC_NO_FLOAT
 #include <float.h>
 
 #define CEILING_POS(X) ((X-(long)(X)) > 0 ? (long)(X+1) : (long)(X))
@@ -40,4 +41,5 @@ float rintf(float x);
 
 #ifdef __cplusplus
 }
+#endif
 #endif

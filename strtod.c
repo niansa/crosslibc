@@ -1,3 +1,4 @@
+#ifndef CLIBC_NO_FLOAT
 /* Implementation of strtod for systems with atof.
    Copyright (C) 1991, 1995, 2002 Free Software Foundation, Inc.
 
@@ -134,3 +135,4 @@ strtod (char *str, char **ptr)
   *ptr = str;
   return 0.0;
 }
+#endif

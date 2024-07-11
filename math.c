@@ -2,6 +2,7 @@
 
 
 
+#ifndef CLIBC_NO_FLOAT
 double ceil(double x) {
     return CEILING(x);
 }
@@ -56,3 +57,4 @@ double rint(double x) {
 float rintf(float x) {
     return __builtin_rintf(x);
 }
+#endif

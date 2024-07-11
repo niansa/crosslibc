@@ -1,5 +1,6 @@
 #pragma once
 
+#ifndef CLIBC_NO_FLOAT
 /* Radix of exponent representation, b. */
 #define FLT_RADIX	__FLT_RADIX__
 
@@ -354,3 +355,4 @@
 #define DEC32_SNAN	(__builtin_nansd32 (""))
 #define DEC64_SNAN	(__builtin_nansd64 (""))
 #define DEC128_SNAN	(__builtin_nansd128 (""))
+#endif

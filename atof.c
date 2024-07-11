@@ -1,3 +1,4 @@
+#ifndef CLIBC_NO_FLOAT
 /* 
  * Copyright (C) 2014, Galois, Inc.
  * This sotware is distributed under a standard, three-clause BSD license.
@@ -50,4 +51,4 @@ double atof(const char *s)
   }
   return a;
 }
-
+#endif

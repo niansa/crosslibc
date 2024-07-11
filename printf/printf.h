@@ -35,6 +35,10 @@
 #include <stdarg.h>
 #include <stddef.h>
 
+#ifdef CLIBC_NO_FLOAT
+#define PRINTF_DISABLE_SUPPORT_FLOAT
+#endif
+
 
 #ifdef __cplusplus
 extern "C" {
