@@ -74,7 +74,7 @@
 #endif
 
 #ifndef UINT_MAX
-#define UINT_MAX          ((unsigned int)__INT_MAX__)*2+1
+#define UINT_MAX         ((__INT_MAX__ << 1) | 1)
 #endif
 
 #ifndef LONG_MIN
