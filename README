@@ -1,0 +1,5 @@
+--- crosslibc ---
+
+Minimal libc implementation for gcc/clang.
+
+All functions to be defined by the user are listed in `user-impl.h`.
