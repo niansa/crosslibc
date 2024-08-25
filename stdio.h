@@ -1,6 +1,5 @@
 #pragma once
 
-#include "user-impl.h"
 #include "printf/printf.h"
 
 #define fprintf(file, ...) printf_(__VA_ARGS__)
