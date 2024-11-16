@@ -4,6 +4,7 @@
 #include <stddef.h>
 
 
+
 size_t strlen(const char *str) {
     size_t fres = 0;
     while (str[fres]) ++fres;
