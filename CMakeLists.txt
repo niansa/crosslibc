@@ -8,6 +8,6 @@ file(GLOB CROSSLIBC_SRCS
 )
 
 add_library(crosslibc STATIC ${CROSSLIBC_SRCS})
-include_directories(SYSTEM
+target_include_directories(crosslibc PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
