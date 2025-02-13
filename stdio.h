@@ -3,6 +3,7 @@
 #include "printf/printf.h"
 
 #define fprintf(file, ...) printf_(__VA_ARGS__)
+#define EOF (-1)
 
 #ifdef __cplusplus
 namespace _stdlib {
