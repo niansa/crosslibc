@@ -57,7 +57,7 @@ void _putchar(char c) {
 }
 
 char _getchar() {
-    char fres;
+    char fres = '\0';
     SYSCALL3(63, 1, &fres, 1);
     return fres;
 }

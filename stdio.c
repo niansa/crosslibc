@@ -9,7 +9,10 @@ int putchar(int c) {
     return (int)(unsigned char)c;
 }
 int getchar(void) {
-    return (int)_getchar();
+    const char c = _getchar();
+    if (c != '\0')
+        return (int)c;
+    return EOF;
 }
 int puts(const char *s) {
     _puts(s);
