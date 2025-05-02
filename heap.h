@@ -7,7 +7,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#ifndef LIBC_NO_HEAP
+#ifndef CLIBC_NO_HEAP
 #ifndef CLIBC_NO_LL_HEAP
 extern void *mem_base;
 extern size_t mem_size;

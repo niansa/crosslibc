@@ -11,7 +11,7 @@ struct memchunk_free {
 
 
 
-#ifndef LIBC_NO_HEAP
+#ifndef CLIBC_NO_HEAP
 #ifndef CLIBC_NO_LL_HEAP
 static struct memchunk_free heap;
 
