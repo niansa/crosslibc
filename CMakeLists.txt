@@ -7,7 +7,7 @@ file(GLOB CROSSLIBC_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/printf/*.c
 )
 
-add_library(crosslibc STATIC ${CROSSLIBC_SRCS})
+add_library(crosslibc ${CROSSLIBC_SRCS})
 target_include_directories(crosslibc PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/STL
 )
