@@ -1,13 +1,70 @@
 #pragma once
+#include <cstdlib>
+#include <new>
 
-void *operator new(size_t size);
-void *operator new[](size_t size);
-void *operator new[](size_t size, const char *, int, unsigned, const char *, int line);
-void *operator new[](size_t size, size_t, size_t, char const *, int, unsigned int, char const*, int);
+// Single object new
+inline void *operator new(std::size_t size) {
+    if (size == 0)
+        size = 1; // malloc(0) may return nullptr
+    return std::malloc(size);
+}
 
-void operator delete(void *ptr, unsigned long);
-void operator delete[](void *ptr, unsigned long);
-void operator delete[](void *ptr);
+// Array new
+inline void *operator new[](std::size_t size) {
+    if (size == 0)
+        size = 1;
+    return std::malloc(size);
+}
 
-void *operator new(std::size_t n, void *ptr);
-void operator delete(void *ptr);
+// Placement new (does nothing special)
+inline void *operator new(std::size_t, void *ptr) { return ptr; }
+
+// Array new with debug information (parameters are typically ignored)
+inline void *operator new[](std::size_t size, const char *, int, unsigned, const char *, int) {
+    if (size == 0)
+        size = 1;
+    return std::malloc(size);
+}
+
+// Array new with alignment and debug information
+inline void *operator new[](std::size_t size, std::size_t, std::size_t, char const *, int, unsigned int, char const *, int) {
+    if (size == 0)
+        size = 1;
+    return std::malloc(size);
+}
+
+// Single object delete
+inline void operator delete(void *ptr) {
+    if (ptr)
+        std::free(ptr);
+}
+
+// Single object delete with size hint (C++14 feature)
+inline void operator delete(void *ptr, std::size_t) {
+    if (ptr)
+        std::free(ptr);
+}
+
+// Array delete
+inline void operator delete[](void *ptr) {
+    if (ptr)
+        std::free(ptr);
+}
+
+// Array delete with size hint (C++14 feature)
+inline void operator delete[](void *ptr, std::size_t) {
+    if (ptr)
+        std::free(ptr);
+}
+
+// Additional delete for the debug version of array new
+inline void operator delete[](void *ptr, const char *, int, unsigned, const char *, int) {
+    if (ptr)
+        std::free(ptr);
+}
+
+// Additional delete for the debug version of array new with alignment
+inline void operator delete[](void *ptr, std::size_t, std::size_t, char const *, int, unsigned int, char const *, int) {
+    if (ptr)
+        std::free(ptr);
+}
