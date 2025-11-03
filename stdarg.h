@@ -8,4 +8,3 @@ typedef __builtin_va_list va_list;
 
 /* fix a buggy dependency on GCC in libio.h */
 typedef va_list __gnuc_va_list;
-#define _VA_LIST_DEFINED

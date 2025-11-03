@@ -11,19 +11,11 @@
  * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
+
 #pragma once
 
-#include <stdint.h> // Workaround for projects expecting stdint.h from stddef.h
-
-#undef NULL
 #ifndef __cplusplus
-#  define NULL ((void *)0)
-#else
-#  define NULL __null
+
+#define noreturn _Noreturn
+
 #endif
-
-#undef offsetof
-#define offsetof(s, m) __builtin_offsetof(s, m)
-
-#undef unreachable
-#define unreachable() __builtin_unreachable()
