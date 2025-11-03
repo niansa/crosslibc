@@ -68,3 +68,11 @@ inline void operator delete[](void *ptr, std::size_t, std::size_t, char const *,
     if (ptr)
         std::free(ptr);
 }
+
+// Launder
+namespace std {
+template<typename T>
+[[nodiscard]] constexpr T *launder(T *p) noexcept {
+	return __builtin_launder(p);
+}
+} // namespace std
