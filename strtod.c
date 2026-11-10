@@ -1,4 +1,4 @@
-#ifndef CLIBC_NO_FLOAT
+#ifndef CLIBC_NO_DOUBLE
 /* Implementation of strtod for systems with atof.
    Copyright (C) 1991, 1995, 2002 Free Software Foundation, Inc.
 

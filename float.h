@@ -1,13 +1,17 @@
 #pragma once
 
-#ifndef CLIBC_NO_FLOAT
+#if !defined(CLIBC_NO_FLOAT) || !defined(CLIBC_NO_DOUBLE)
 /* Radix of exponent representation, b. */
 #define FLT_RADIX	__FLT_RADIX__
 
 /* Number of base-FLT_RADIX digits in the significand, p.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_MANT_DIG	__FLT_MANT_DIG__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_MANT_DIG	__DBL_MANT_DIG__
 #define LDBL_MANT_DIG	__LDBL_MANT_DIG__
+#endif
 
 /* Number of decimal digits, q, such that any floating-point number with q
    decimal digits can be rounded into a floating-point number with p radix b
@@ -16,56 +20,88 @@
 	p * log10(b)			if b is a power of 10
 	floor((p - 1) * log10(b))	otherwise
 */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_DIG		__FLT_DIG__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_DIG		__DBL_DIG__
 #define LDBL_DIG	__LDBL_DIG__
+#endif
 
 /* Minimum int x such that FLT_RADIX**(x-1) is a normalized float, emin */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_MIN_EXP	__FLT_MIN_EXP__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_MIN_EXP	__DBL_MIN_EXP__
 #define LDBL_MIN_EXP	__LDBL_MIN_EXP__
+#endif
 
 /* Minimum negative integer such that 10 raised to that power is in the
    range of normalized floating-point numbers,
 
 	ceil(log10(b) * (emin - 1))
 */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_MIN_10_EXP	__FLT_MIN_10_EXP__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_MIN_10_EXP	__DBL_MIN_10_EXP__
 #define LDBL_MIN_10_EXP	__LDBL_MIN_10_EXP__
+#endif
 
 /* Maximum int x such that FLT_RADIX**(x-1) is a representable float, emax.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_MAX_EXP	__FLT_MAX_EXP__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_MAX_EXP	__DBL_MAX_EXP__
 #define LDBL_MAX_EXP	__LDBL_MAX_EXP__
+#endif
 
 /* Maximum integer such that 10 raised to that power is in the range of
    representable finite floating-point numbers,
 
 	floor(log10((1 - b**-p) * b**emax))
 */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_MAX_10_EXP	__FLT_MAX_10_EXP__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_MAX_10_EXP	__DBL_MAX_10_EXP__
 #define LDBL_MAX_10_EXP	__LDBL_MAX_10_EXP__
+#endif
 
 /* Maximum representable finite floating-point number,
 
 	(1 - b**-p) * b**emax
 */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_MAX		__FLT_MAX__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_MAX		__DBL_MAX__
 #define LDBL_MAX	__LDBL_MAX__
+#endif
 
 /* The difference between 1 and the least value greater than 1 that is
    representable in the given floating point type, b**1-p.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_EPSILON	__FLT_EPSILON__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_EPSILON	__DBL_EPSILON__
 #define LDBL_EPSILON	__LDBL_EPSILON__
+#endif
 
 /* Minimum normalized positive floating-point number, b**(emin - 1).  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_MIN		__FLT_MIN__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_MIN		__DBL_MIN__
 #define LDBL_MIN	__LDBL_MIN__
+#endif
 
 /* Addition rounds to 0: zero, 1: nearest, 2: +inf, 3: -inf, -1: unknown.  */
 /* ??? This is supposed to change with calls to fesetround in <fenv.h>.  */
@@ -149,49 +185,76 @@
 #define DECIMAL_DIG	__DECIMAL_DIG__
 
 /* Versions of DECIMAL_DIG for each floating-point type.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_DECIMAL_DIG		__FLT_DECIMAL_DIG__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_DECIMAL_DIG		__DBL_DECIMAL_DIG__
 #define LDBL_DECIMAL_DIG	__LDBL_DECIMAL_DIG__
+#endif
 
 /* Whether types support subnormal numbers.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_HAS_SUBNORM		__FLT_HAS_DENORM__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_HAS_SUBNORM		__DBL_HAS_DENORM__
 #define LDBL_HAS_SUBNORM	__LDBL_HAS_DENORM__
+#endif
 
 /* Minimum positive values, including subnormals.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_TRUE_MIN	__FLT_DENORM_MIN__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_TRUE_MIN	__DBL_DENORM_MIN__
 #define LDBL_TRUE_MIN	__LDBL_DENORM_MIN__
+#endif
 
 /* Maximum finite positive value with MANT_DIG digits in the
    significand taking their maximum value.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_NORM_MAX	__FLT_NORM_MAX__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_NORM_MAX	__DBL_NORM_MAX__
 #define LDBL_NORM_MAX	__LDBL_NORM_MAX__
+#endif
 
 /* Whether each type matches an IEC 60559 format (1 for format, 2 for
    format and operations).  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_IS_IEC_60559	__FLT_IS_IEC_60559__
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_IS_IEC_60559	__DBL_IS_IEC_60559__
 #define LDBL_IS_IEC_60559	__LDBL_IS_IEC_60559__
+#endif
 
+#ifndef CLIBC_NO_FLOAT
 /* Infinity in type float, or overflow if infinity not supported.  */
 #define INFINITY	(__builtin_inff ())
 
 /* Quiet NaN, if supported for float.  */
 #define NAN		(__builtin_nanf (""))
+#endif
 
 /* Signaling NaN, if supported for each type.  All formats supported
    by GCC support either both quiet and signaling NaNs, or neither
    kind of NaN.  */
+#ifndef CLIBC_NO_FLOAT
 #define FLT_SNAN	(__builtin_nansf (""))
+#endif
+#ifndef CLIBC_NO_DOUBLE
 #define DBL_SNAN	(__builtin_nans (""))
 #define LDBL_SNAN	(__builtin_nansl (""))
+#endif
 
 /* Number of decimal digits for which conversions between decimal
    character strings and binary formats, in both directions, are
    correctly rounded.  */
 #define CR_DECIMAL_DIG	__UINTMAX_MAX__
+#endif
 
 /* Constants for _FloatN and _FloatNx types from TS 18661-3.  See
    comments above for their semantics.  */
@@ -283,7 +346,7 @@
 #define FLT128X_EPSILON		__FLT128X_EPSILON__
 #define FLT128X_MIN		__FLT128X_MIN__
 #define FLT128X_DECIMAL_DIG	__FLT128X_DECIMAL_DIG__
-#define FLT128X_TRUE_MIN	__FLT128X_DENORM_MIN__
+#define FLT128X_TRUE_MIN		__FLT128X_DENORM_MIN__
 #define FLT128X_SNAN	(__builtin_nansf128x (""))
 
 /* C2X; formerly Technical Report 24732, extension for decimal
@@ -355,4 +418,3 @@
 #define DEC32_SNAN	(__builtin_nansd32 (""))
 #define DEC64_SNAN	(__builtin_nansd64 (""))
 #define DEC128_SNAN	(__builtin_nansd128 (""))
-#endif

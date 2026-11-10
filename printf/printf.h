@@ -35,7 +35,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-#ifdef CLIBC_NO_FLOAT
+#ifdef CLIBC_NO_DOUBLE
 #define PRINTF_DISABLE_SUPPORT_FLOAT
 #endif
 

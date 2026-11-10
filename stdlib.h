@@ -15,7 +15,7 @@ void *reallocarray(void *ptr, size_t nmemb, size_t size);
 
 int atoi(const char *nptr);
 
-#ifndef CLIBC_NO_FLOAT
+#ifndef CLIBC_NO_DOUBLE
 double strtod(const char *nptr, char **endptr);
 #endif
 

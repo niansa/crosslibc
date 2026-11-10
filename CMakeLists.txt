@@ -10,6 +10,7 @@ else()
     set(CLIBC_NO_LL_HEAP ON)
 endif()
 option(CLIBC_NO_FLOAT "Disable floating point support" OFF)
+option(CLIBC_NO_DOUBLE "Disable double-precision floating point support" OFF)
 
 
 file(GLOB CROSSLIBC_SRCS
@@ -33,6 +34,10 @@ endif()
 
 if(CLIBC_NO_FLOAT)
     target_compile_definitions(crosslibc PUBLIC CLIBC_NO_FLOAT)
+else()
+
+if(CLIBC_NO_FLOAT OR CLIBC_NO_DOUBLE)
+    target_compile_definitions(crosslibc PUBLIC CLIBC_NO_DOUBLE)
 endif()
 
 
@@ -40,3 +45,4 @@ message(STATUS "crosslibc Configuration:")
 message(STATUS "  CLIBC_NO_HEAP: ${CLIBC_NO_HEAP}")
 message(STATUS "  CLIBC_NO_LL_HEAP: ${CLIBC_NO_LL_HEAP}")
 message(STATUS "  CLIBC_NO_FLOAT: ${CLIBC_NO_FLOAT}")
+message(STATUS "  CLIBC_NO_DOUBLE: ${CLIBC_NO_DOUBLE}")

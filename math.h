@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef CLIBC_NO_FLOAT
+#if !defined(CLIBC_NO_FLOAT) || !defined(CLIBC_NO_DOUBLE)
 #include <float.h>
 
 #define CEILING_POS(X) ((X-(long)(X)) > 0 ? (long)(X+1) : (long)(X))
@@ -16,28 +16,39 @@
 extern "C" {
 #endif
 
-double ceil(double x);
+#ifndef CLIBC_NO_FLOAT
 float ceilf(float x);
+
+float copysignf(float x, float y);
+
+float fabsf(float x);
+
+float floorf(float x);
+
+float sqrtf(float x);
+
+float truncf(float x);
+
+float rintf(float x);
+#endif
+
+#ifndef CLIBC_NO_DOUBLE
+double ceil(double x);
 long double ceill(long double x);
 
 double copysign(double x, double y);
-float copysignf(float x, float y);
 long double copysignl(long double x, long double y);
 
 double fabs(double x);
-float fabsf(float x);
 
 double floor(double x);
-float floorf(float x);
 
 double sqrt(double x);
-float sqrtf(float x);
 
 double trunc(double x);
-float truncf(float x);
 
 double rint(double x);
-float rintf(float x);
+#endif
 
 #ifdef __cplusplus
 }
